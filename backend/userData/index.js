@@ -17,10 +17,10 @@ app.post("/user", async(req, res) => {
     if (user.length>0){
         res.status(201).send({ "message" : "Database consists of users." })
     } else {
-        arr.map(async(ele) => {
-            const addUser = new userModel(ele);
+        for (let i=0;i<arr.length;i++){
+            const addUser = new userModel(arr[i]);
             await addUser.save();
-        });
+        }
 
         res.status(200).send({ "message" : "Users has been added to the datebase" })
     }
